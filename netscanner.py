@@ -10,14 +10,17 @@ def scan(ip):
   arp_request_broadcast = broadcast/arp_request
   #arp_request_broadcast.show()
   answeredlist = scapy.srp(arp_request_braodcast, timeout=1, verbose=False)[0]
-  # to list variables in scapy Ether 
-  scapy.ls(Ether)
-#list out the answered responses  
-#  print(answeredlist.summary())
-print("IP\t\t\tMAC Address\n_______________________________________________")
-# list all elements
-for element in answered_list:
-  print(element[1].psrc + "\t\t" +element[1].hwsrc)
 
-scan("192.168.0.0/16")
-        
+clients_list = []
+for element in answered_list:
+  client_dict = {"ip" : element[1].psrc, "mac": element[1].hwsrc}
+  client_list.append(client_dict)
+return (client_list)
+
+def print_results(results_list)
+    print("IP\t\t\tMAC Address\n_______________________________________________")
+    for client in results_list:
+      print(client["ip"] + "\t\t" + client["mac"])
+  
+scan_result = scan("192.168.0.0/16")
+print_result(scan_result)        
